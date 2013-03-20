@@ -1,0 +1,7 @@
+*.class*.psd*.ai
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/bin
