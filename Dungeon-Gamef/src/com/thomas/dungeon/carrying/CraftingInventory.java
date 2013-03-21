@@ -21,12 +21,12 @@
 /*    */   }
 /*    */ 
 /*    */   public static void addItemAmount(int Item, int Amount) {
-/* 41 */     ((CraftableInv)craftedItems.get(Item)).amountOf += Amount;
+/* 41 */     craftedItems.get(Item).amountOf += Amount;
 /* 42 */     sort();
 /*    */   }
 /*    */ 
 /*    */   public static void addItem(int Item) {
-/* 46 */     ((CraftableInv)craftedItems.get(Item)).amountOf += 1;
+/* 46 */     craftedItems.get(Item).amountOf += 1;
 /* 47 */     sort();
 /*    */   }
 /*    */ 
@@ -61,7 +61,7 @@ public int compare(Object o1, Object o2) {
 /* 81 */     if (ItemTypeLocation >= craftedItems.size()) {
 /* 82 */       return null;
 /*    */     }
-/* 84 */     if (((CraftableInv)craftedItems.get(ItemTypeLocation)).name.equals("Wall")) {
+/* 84 */     if (craftedItems.get(ItemTypeLocation).name.equals("Wall")) {
 /* 85 */       return Screenprinting.Muur;
 /*    */     }
 /* 87 */     return null;
@@ -78,7 +78,8 @@ public int compare(Object o1, Object o2) {
 /* 19 */     private craftAbleEnum(String s) { this.displayName = s; }
 /*    */ 
 /*    */ 
-/*    */     public String toString()
+/*    */     @Override
+public String toString()
 /*    */     {
 /* 24 */       return this.displayName;
 /*    */     }

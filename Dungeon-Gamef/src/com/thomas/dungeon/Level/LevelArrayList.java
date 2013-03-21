@@ -2,7 +2,6 @@
 /*     */ 
 /*     */ import com.thomas.dungeon.GameTechnical.Gamehandler;
 /*     */ import com.thomas.dungeon.ScreenStuff.Screenprinting;
-/*     */ import java.io.PrintStream;
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Random;
 /*     */ 
@@ -38,28 +37,28 @@
 /*  39 */       allLevels.add(Gamehandler.levelLevel, new LevelNiveau(makeMap()));
 /*     */     }
 /*     */ 
-/*  42 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString;
+/*  42 */     return allLevels.get(Gamehandler.levelLevel).levelString;
 /*     */   }
 /*     */ 
 /*     */   public static int getStairIntX() {
-/*  46 */     if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairX == 0) {
+/*  46 */     if (allLevels.get(Gamehandler.levelLevel).stairX == 0) {
 /*  47 */       boolean doneeeve = false;
 /*  48 */       int tried = 0;
 /*     */       do {
-/*  50 */         ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairX = rand.nextInt(80);
-/*  51 */         ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairY = rand.nextInt(50);
-/*  52 */         if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairX][((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairY].equals("-"))
+/*  50 */         allLevels.get(Gamehandler.levelLevel).stairX = rand.nextInt(80);
+/*  51 */         allLevels.get(Gamehandler.levelLevel).stairY = rand.nextInt(50);
+/*  52 */         if (allLevels.get(Gamehandler.levelLevel).levelString[allLevels.get(Gamehandler.levelLevel).stairX][allLevels.get(Gamehandler.levelLevel).stairY].equals("-"))
 /*  53 */           doneeeve = true;
 /*     */         else
 /*  55 */           tried++;
 /*     */       }
 /*  57 */       while ((!doneeeve) && (tried < 20000));
 /*     */     }
-/*  59 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairX;
+/*  59 */     return allLevels.get(Gamehandler.levelLevel).stairX;
 /*     */   }
 /*     */ 
 /*     */   public static int getStairIntY() {
-/*  63 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairY;
+/*  63 */     return allLevels.get(Gamehandler.levelLevel).stairY;
 /*     */   }
 /*     */ 
 /*     */   public static synchronized String[][] makeMap() {
@@ -67,17 +66,17 @@
 /*  68 */     Screenprinting.loadImages();
 /*  69 */     for (int x = 0; x < 80; x++) {
 /*  70 */       for (int y = 0; y < 50; y++) {
-/*  71 */         ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] = new String();
+/*  71 */         allLevels.get(Gamehandler.levelLevel).levelString[x][y] = new String();
 /*     */       }
 /*     */     }
 /*  74 */     for (int Y = 0; Y < 50; Y++) {
 /*  75 */       for (int X = 0; X < 80; X++) {
-/*  76 */         ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[X][Y] = "_";
+/*  76 */         allLevels.get(Gamehandler.levelLevel).levelString[X][Y] = "_";
 /*     */       }
 /*     */     }
 /*  79 */     Rooms ro = new Rooms();
 /*     */ 
-/*  81 */     ro.beginningCourse(36, 21, ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString);
+/*  81 */     ro.beginningCourse(36, 21, allLevels.get(Gamehandler.levelLevel).levelString);
 /*     */ 
 /*  83 */     for (int loop = 0; loop < 400; loop++)
 /*     */     {
@@ -88,49 +87,49 @@
 /*     */ 
 /*  90 */       switch (kamerTeBouwen) {
 /*     */       case 1:
-/*  92 */         ro.gang(nummerX, nummerY, ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString, direction);
+/*  92 */         ro.gang(nummerX, nummerY, allLevels.get(Gamehandler.levelLevel).levelString, direction);
 /*  93 */         break;
 /*     */       case 2:
-/*  95 */         ro.echteGang(nummerX, nummerY, ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString, direction);
+/*  95 */         ro.echteGang(nummerX, nummerY, allLevels.get(Gamehandler.levelLevel).levelString, direction);
 /*  96 */         break;
 /*     */       default:
-/*  98 */         ro.gang(nummerX, nummerY, ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString, direction);
+/*  98 */         ro.gang(nummerX, nummerY, allLevels.get(Gamehandler.levelLevel).levelString, direction);
 /*     */       }
 /*     */ 
 /*     */     }
 /*     */ 
 /* 103 */     replaceDoors();
-/* 104 */     Rooms.makePilars(((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString);
-/* 105 */     ((LevelNiveau)allLevels.get(0)).levelString[39][25] = "-";
+/* 104 */     Rooms.makePilars(allLevels.get(Gamehandler.levelLevel).levelString);
+/* 105 */     allLevels.get(0).levelString[39][25] = "-";
 /*     */ 
 /* 107 */     for (int x = 0; x < 80; x++) {
 /* 108 */       for (int y = 0; y < 50; y++) {
-/* 109 */         if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] == "_") {
-/* 110 */           ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] = "x";
+/* 109 */         if (allLevels.get(Gamehandler.levelLevel).levelString[x][y] == "_") {
+/* 110 */           allLevels.get(Gamehandler.levelLevel).levelString[x][y] = "x";
 /*     */         }
 /*     */       }
 /*     */     }
 /* 114 */     getStairIntX();
 /* 115 */     resetBlockHealth();
 /*     */ 
-/* 117 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString;
+/* 117 */     return allLevels.get(Gamehandler.levelLevel).levelString;
 /*     */   }
 /*     */ 
 /*     */   public static void replaceDoors()
 /*     */   {
 /* 122 */     for (int i = 0; i < 80; i++)
 /* 123 */       for (int j = 0; j < 50; j++)
-/* 124 */         if ((((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][j].equals("D")) || (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][j].equals("B"))) {
+/* 124 */         if ((allLevels.get(Gamehandler.levelLevel).levelString[i][j].equals("D")) || (allLevels.get(Gamehandler.levelLevel).levelString[i][j].equals("B"))) {
 /* 125 */           plaatsVoorDeur plts = new plaatsVoorDeur();
 /* 126 */           plts.setX(i);
 /* 127 */           plts.setY(j);
 /*     */ 
-/* 129 */           if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[(i + 1)][j].equals("B")) {
+/* 129 */           if (allLevels.get(Gamehandler.levelLevel).levelString[(i + 1)][j].equals("B")) {
 /* 130 */             plts.setRichting(1);
 /* 131 */             boolean volgende = true;
 /* 132 */             int counter = 1;
 /*     */             do
-/* 134 */               if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[(i + counter)][j].equals("B")) {
+/* 134 */               if (allLevels.get(Gamehandler.levelLevel).levelString[(i + counter)][j].equals("B")) {
 /* 135 */                 plts.aantalOpEenRijPlusEen();
 /* 136 */                 counter++;
 /*     */               }
@@ -140,15 +139,15 @@
 /* 133 */             while (
 /* 141 */               volgende);
 /* 142 */             if (plts.getAOER() > 0) {
-/* 143 */               plts.behoudEenDeur(((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString);
+/* 143 */               plts.behoudEenDeur(allLevels.get(Gamehandler.levelLevel).levelString);
 /*     */             }
 /*     */           }
-/* 146 */           if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][(j + 1)].equals("D")) {
+/* 146 */           if (allLevels.get(Gamehandler.levelLevel).levelString[i][(j + 1)].equals("D")) {
 /* 147 */             plts.setRichting(2);
 /* 148 */             boolean volgendeY = true;
 /* 149 */             int counterY = 1;
 /*     */             do
-/* 151 */               if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][(j + counterY)].equals("D")) {
+/* 151 */               if (allLevels.get(Gamehandler.levelLevel).levelString[i][(j + counterY)].equals("D")) {
 /* 152 */                 plts.aantalOpEenRijPlusEen();
 /* 153 */                 counterY++;
 /*     */               }
@@ -158,7 +157,7 @@
 /* 150 */             while (
 /* 158 */               volgendeY);
 /* 159 */             if (plts.getAOER() > 0)
-/* 160 */               plts.behoudEenDeur(((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString);
+/* 160 */               plts.behoudEenDeur(allLevels.get(Gamehandler.levelLevel).levelString);
 /*     */           }
 /*     */         }
 /*     */   }
@@ -169,32 +168,32 @@
 /*     */   }
 /*     */ 
 /*     */   public static void resetBlockHealth() {
-/* 177 */     ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairX][((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).stairY] = "-";
+/* 177 */     allLevels.get(Gamehandler.levelLevel).levelString[allLevels.get(Gamehandler.levelLevel).stairX][allLevels.get(Gamehandler.levelLevel).stairY] = "-";
 /*     */ 
 /* 179 */     for (int x = 0; x < 80; x++) {
 /* 180 */       for (int y = 0; y < 50; y++) {
-/* 181 */         ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y] = 0;
+/* 181 */         allLevels.get(Gamehandler.levelLevel).blockHealth[x][y] = 0;
 /*     */       }
 /*     */     }
 /* 184 */     for (int x = 0; x < 80; x++) {
 /* 185 */       for (int y = 0; y < 50; y++) {
-/* 186 */         if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] == "X")
-/* 187 */           ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y] = 20;
-/* 188 */         else if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] == "x")
-/* 189 */           ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y] = 18;
-/* 190 */         else if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] == "D")
-/* 191 */           ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y] = 10;
-/* 192 */         else if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[x][y] == "B")
-/* 193 */           ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y] = 10;
+/* 186 */         if (allLevels.get(Gamehandler.levelLevel).levelString[x][y] == "X")
+/* 187 */           allLevels.get(Gamehandler.levelLevel).blockHealth[x][y] = 20;
+/* 188 */         else if (allLevels.get(Gamehandler.levelLevel).levelString[x][y] == "x")
+/* 189 */           allLevels.get(Gamehandler.levelLevel).blockHealth[x][y] = 18;
+/* 190 */         else if (allLevels.get(Gamehandler.levelLevel).levelString[x][y] == "D")
+/* 191 */           allLevels.get(Gamehandler.levelLevel).blockHealth[x][y] = 10;
+/* 192 */         else if (allLevels.get(Gamehandler.levelLevel).levelString[x][y] == "B")
+/* 193 */           allLevels.get(Gamehandler.levelLevel).blockHealth[x][y] = 10;
 /*     */         else {
-/* 195 */           ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y] = 10;
+/* 195 */           allLevels.get(Gamehandler.levelLevel).blockHealth[x][y] = 10;
 /*     */         }
 /*     */       }
 /*     */     }
 /*     */ 
 /* 200 */     for (int x = 0; x < 80; x++) {
 /* 201 */       for (int y = 0; y < 50; y++) {
-/* 202 */         System.out.print(((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).blockHealth[x][y]);
+/* 202 */         System.out.print(allLevels.get(Gamehandler.levelLevel).blockHealth[x][y]);
 /*     */       }
 /* 204 */       System.out.println();
 /*     */     }
@@ -239,7 +238,7 @@
 /*     */ 
 /*     */   public static String[][] setTorches() {
 /* 247 */     torchesDone = false;
-/* 248 */     if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).torches == null)
+/* 248 */     if (allLevels.get(Gamehandler.levelLevel).torches == null)
 /*     */     {
 /* 250 */       String[][] torches = new String[80][50];
 /*     */ 
@@ -262,29 +261,29 @@
 /*     */           }
 /*     */ 
 /* 270 */           if ((notATorch) && 
-/* 271 */             (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][j] == "-")) {
-/* 272 */             if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[(i + 1)][j] == "X") {
+/* 271 */             (allLevels.get(Gamehandler.levelLevel).levelString[i][j] == "-")) {
+/* 272 */             if (allLevels.get(Gamehandler.levelLevel).levelString[(i + 1)][j] == "X") {
 /* 273 */               counter++;
 /* 274 */               if (rand.nextInt(torchrate - counter) == 0)
 /*     */               {
 /* 276 */                 torches[i][j] = "leftofwall";
 /*     */               }
 /*     */             }
-/* 279 */             if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[(i - 1)][j] == "X")
+/* 279 */             if (allLevels.get(Gamehandler.levelLevel).levelString[(i - 1)][j] == "X")
 /*     */             {
 /* 281 */               if (rand.nextInt(torchrate - counter) == 0)
 /*     */               {
 /* 283 */                 torches[i][j] = "rightofwall";
 /*     */               }
 /*     */             }
-/* 286 */             if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][(j + 1)] == "X")
+/* 286 */             if (allLevels.get(Gamehandler.levelLevel).levelString[i][(j + 1)] == "X")
 /*     */             {
 /* 288 */               if (rand.nextInt(torchrate - counter) == 0)
 /*     */               {
 /* 290 */                 torches[i][j] = "abovewall";
 /*     */               }
 /*     */             }
-/* 293 */             if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[i][(j - 1)] == "X")
+/* 293 */             if (allLevels.get(Gamehandler.levelLevel).levelString[i][(j - 1)] == "X")
 /*     */             {
 /* 295 */               if (rand.nextInt(torchrate - counter) == 0)
 /*     */               {
@@ -298,15 +297,15 @@
 /*     */         }
 /*     */       }
 /*     */ 
-/* 307 */       ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).torches = torches;
+/* 307 */       allLevels.get(Gamehandler.levelLevel).torches = torches;
 /* 308 */       torchesDone = true;
 /*     */     }
 /*     */ 
-/* 312 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).torches;
+/* 312 */     return allLevels.get(Gamehandler.levelLevel).torches;
 /*     */   }
 /*     */ 
 /*     */   public static String[][] setVariations() {
-/* 316 */     if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).variations == null) {
+/* 316 */     if (allLevels.get(Gamehandler.levelLevel).variations == null) {
 /* 317 */       String[][] variatiesInVloer = new String[80][50];
 /* 318 */       for (int xi = 0; xi < 80; xi++) {
 /* 319 */         for (int yi = 0; yi < 50; yi++) {
@@ -315,7 +314,7 @@
 /*     */       }
 /* 323 */       for (int xi = 0; xi < 80; xi++) {
 /* 324 */         for (int yi = 0; yi < 50; yi++) {
-/* 325 */           if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[xi][yi].equals("-")) {
+/* 325 */           if (allLevels.get(Gamehandler.levelLevel).levelString[xi][yi].equals("-")) {
 /* 326 */             if (rand.nextInt(scheurenVerhouding / 2) == 0) {
 /* 327 */               variatiesInVloer[xi][yi] = "scheur";
 /*     */             }
@@ -332,10 +331,10 @@
 /*     */         }
 /*     */       }
 /*     */ 
-/* 342 */       ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).variations = variatiesInVloer;
+/* 342 */       allLevels.get(Gamehandler.levelLevel).variations = variatiesInVloer;
 /*     */     }
 /*     */ 
-/* 345 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).variations;
+/* 345 */     return allLevels.get(Gamehandler.levelLevel).variations;
 /*     */   }
 /*     */ 
 /*     */   public static void zoekMuur()
@@ -344,19 +343,19 @@
 /*     */     {
 /* 352 */       nummerX = rand.nextInt(80);
 /* 353 */       nummerY = rand.nextInt(50);
-/* 354 */     }while (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[nummerX][nummerY] != "X");
+/* 354 */     }while (allLevels.get(Gamehandler.levelLevel).levelString[nummerX][nummerY] != "X");
 /*     */   }
 /*     */ 
 /*     */   public static void zoekVrijePlaatsNaast()
 /*     */   {
 /*     */     try {
-/* 360 */       if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[(nummerX + 1)][nummerY] == "_")
+/* 360 */       if (allLevels.get(Gamehandler.levelLevel).levelString[(nummerX + 1)][nummerY] == "_")
 /* 361 */         direction = "rechts";
-/* 362 */       else if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[(nummerX - 1)][nummerY] == "_")
+/* 362 */       else if (allLevels.get(Gamehandler.levelLevel).levelString[(nummerX - 1)][nummerY] == "_")
 /* 363 */         direction = "links";
-/* 364 */       else if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[nummerX][(nummerY + 1)] == "_")
+/* 364 */       else if (allLevels.get(Gamehandler.levelLevel).levelString[nummerX][(nummerY + 1)] == "_")
 /* 365 */         direction = "onder";
-/* 366 */       else if (((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString[nummerX][(nummerY - 1)] == "_")
+/* 366 */       else if (allLevels.get(Gamehandler.levelLevel).levelString[nummerX][(nummerY - 1)] == "_")
 /* 367 */         direction = "boven";
 /*     */       else
 /*     */         try {
@@ -378,7 +377,7 @@
 /*     */   }
 /*     */ 
 /*     */   public String[][] getMap() {
-/* 391 */     return ((LevelNiveau)allLevels.get(Gamehandler.levelLevel)).levelString;
+/* 391 */     return allLevels.get(Gamehandler.levelLevel).levelString;
 /*     */   }
 /*     */ 
 /*     */   public void printMap()

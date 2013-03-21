@@ -1,6 +1,4 @@
 /*     */ package com.thomas.dungeon.GameTechnical;
-/*     */ 
-/*     */ import com.thomas.dungeon.Entities.Location;
 /*     */ import com.thomas.dungeon.Entities.Mobs;
 /*     */ import com.thomas.dungeon.Entities.Player;
 /*     */ import com.thomas.dungeon.Entities.nextTurnThread;
@@ -14,8 +12,6 @@
 /*     */ import com.thomas.dungeon.armrupgrades.ItemLevels;
 /*     */ import com.thomas.dungeon.carrying.Crafting;
 /*     */ import com.thomas.dungeon.carrying.CraftingInventory;
-/*     */ import java.io.PrintStream;
-/*     */ import java.util.ArrayList;
 /*     */ 
 /*     */ public class Gamehandler
 /*     */ {
@@ -213,9 +209,9 @@
 /* 230 */     inGameMenu = false;
 /*     */   }
 /*     */ 
-/*     */   public static void setHasTurn(int hasTurn)
+/*     */   public static void setHasTurn(int hassTurn)
 /*     */   {
-/* 235 */     hasTurn = hasTurn;
+/* 235 */     hasTurn = hassTurn;
 /* 236 */     checkIfMobsHaveTurn();
 /* 237 */     Player.getPlayer().checkLevel();
 /* 238 */     Items.checkForNeedToPickupItem();
@@ -231,8 +227,8 @@
 /* 248 */     levelType = LevelType;
 /*     */   }
 /*     */ 
-/*     */   public static void setTotalTurns(int totalTurns) {
-/* 252 */     totalTurns = totalTurns;
+/*     */   public static void setTotalTurns(int totallTurns) {
+/* 252 */   	totalTurns = totallTurns;
 /*     */   }
 /*     */ 
 /*     */   public static void updateLevel() {

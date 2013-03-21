@@ -23,13 +23,13 @@
 /*     */   public static void buyArmorUpgrade()
 /*     */   {
 /*  27 */     if (currentArmorLevel + 1 < maxLevelarmor) {
-/*  28 */       for (int item : ((ItemLevel)armorArray.get(currentArmorLevel + 1)).items) {
+/*  28 */       for (int item : armorArray.get(currentArmorLevel + 1).items) {
 /*  29 */         Inventory.removeItem(item, 1);
 /*     */       }
 /*  31 */       if (!Inventory.getIfNegative())
 /*  32 */         currentArmorLevel += 1;
 /*     */       else
-/*  34 */         for (int item : ((ItemLevel)armorArray.get(currentArmorLevel + 1)).items)
+/*  34 */         for (int item : armorArray.get(currentArmorLevel + 1).items)
 /*  35 */           Inventory.addAmountOfItem(item, 1);
 /*     */     }
 /*     */   }
@@ -37,13 +37,13 @@
 /*     */   public static void buyBlockUpgrade()
 /*     */   {
 /*  42 */     if (currentBlockLevel + 1 < maxLevelBlock) {
-/*  43 */       for (int item : ((ItemLevel)BlockArray.get(currentBlockLevel + 1)).items) {
+/*  43 */       for (int item : BlockArray.get(currentBlockLevel + 1).items) {
 /*  44 */         Inventory.removeItem(item, 1);
 /*     */       }
 /*  46 */       if (!Inventory.getIfNegative())
 /*  47 */         currentBlockLevel += 1;
 /*     */       else
-/*  49 */         for (int item : ((ItemLevel)BlockArray.get(currentBlockLevel + 1)).items)
+/*  49 */         for (int item : BlockArray.get(currentBlockLevel + 1).items)
 /*  50 */           Inventory.addAmountOfItem(item, 1);
 /*     */     }
 /*     */   }
@@ -51,13 +51,13 @@
 /*     */   public static void buyHealthUpgrade()
 /*     */   {
 /*  58 */     if (currentHealthLevel + 1 < maxLevel) {
-/*  59 */       for (int item : ((ItemLevel)healthArray.get(currentHealthLevel + 1)).items) {
+/*  59 */       for (int item : healthArray.get(currentHealthLevel + 1).items) {
 /*  60 */         Inventory.removeItem(item, 1);
 /*     */       }
 /*  62 */       if (!Inventory.getIfNegative())
 /*  63 */         currentHealthLevel += 1;
 /*     */       else
-/*  65 */         for (int item : ((ItemLevel)healthArray.get(currentHealthLevel + 1)).items)
+/*  65 */         for (int item : healthArray.get(currentHealthLevel + 1).items)
 /*  66 */           Inventory.addAmountOfItem(item, 1);
 /*     */     }
 /*     */   }
@@ -82,13 +82,13 @@
 /*     */   public static void buyWeaponUpgrade()
 /*     */   {
 /*  93 */     if (currentWeaponLevel + 1 < maxLevel) {
-/*  94 */       for (int item : ((ItemLevel)weaponArray.get(currentWeaponLevel + 1)).items) {
+/*  94 */       for (int item : weaponArray.get(currentWeaponLevel + 1).items) {
 /*  95 */         Inventory.removeItem(item, 1);
 /*     */       }
 /*  97 */       if (!Inventory.getIfNegative())
 /*  98 */         currentWeaponLevel += 1;
 /*     */       else
-/* 100 */         for (int item : ((ItemLevel)weaponArray.get(currentWeaponLevel + 1)).items)
+/* 100 */         for (int item : weaponArray.get(currentWeaponLevel + 1).items)
 /* 101 */           Inventory.addAmountOfItem(item, 1);
 /*     */     }
 /*     */   }

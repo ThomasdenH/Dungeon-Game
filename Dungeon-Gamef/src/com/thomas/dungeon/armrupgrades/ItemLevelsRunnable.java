@@ -5,7 +5,8 @@
 /*    */ public class ItemLevelsRunnable
 /*    */   implements Runnable
 /*    */ {
-/*    */   public void run()
+/*    */   @Override
+public void run()
 /*    */   {
 /* 10 */     ItemLevels.weaponArray = new ArrayList<ItemLevel>();
 /* 11 */     ItemLevels.weaponArray.add(new ItemLevel(new int[] { 1 }));

@@ -9,21 +9,21 @@
 /*    */ {
 /*    */   public static void DestroyBlock(int x, int y)
 /*    */   {
-/* 13 */     if (((com.thomas.dungeon.Level.LevelNiveau)com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel)).levelString[x][y].equals("X")) {
+/* 13 */     if (com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel).levelString[x][y].equals("X")) {
 /* 14 */       Items.setItemOnRandomOffSet(x, y, 5);
 /*    */     }
-/* 16 */     if (((com.thomas.dungeon.Level.LevelNiveau)com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel)).levelString[x][y].equals("x")) {
+/* 16 */     if (com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel).levelString[x][y].equals("x")) {
 /* 17 */       Items.setItemOnRandomOffSet(x, y, 1);
 /*    */     }
-/* 19 */     ((com.thomas.dungeon.Level.LevelNiveau)com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel)).levelString[x][y] = "-";
+/* 19 */     com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel).levelString[x][y] = "-";
 /*    */   }
 /*    */ 
 /*    */   public static void hitBlock(int x, int y)
 /*    */   {
-/* 24 */     if (((com.thomas.dungeon.Level.LevelNiveau)com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel)).levelString[x][y] != "-")
+/* 24 */     if (com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel).levelString[x][y] != "-")
 /* 25 */       Player.startHitting(Converter.convertDirectionToInt(Player.getPlayer().direction));
-/* 26 */     ((com.thomas.dungeon.Level.LevelNiveau)com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel)).blockHealth[x][y] -= ItemLevels.currentBlockLevel * 2;
-/* 27 */     if (((com.thomas.dungeon.Level.LevelNiveau)com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel)).blockHealth[x][y] <= 0)
+/* 26 */     com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel).blockHealth[x][y] -= ItemLevels.currentBlockLevel * 2;
+/* 27 */     if (com.thomas.dungeon.Level.LevelArrayList.allLevels.get(com.thomas.dungeon.GameTechnical.Gamehandler.levelLevel).blockHealth[x][y] <= 0)
 /* 28 */       DestroyBlock(x, y);
 /*    */   }
 /*    */ }

@@ -5,16 +5,12 @@
 /*     */ import com.thomas.dungeon.GameTechnical.Game;
 /*     */ import com.thomas.dungeon.GameTechnical.Gamehandler;
 /*     */ import com.thomas.dungeon.GameTechnical.TileChecker;
-/*     */ import com.thomas.dungeon.Items.Chest;
 /*     */ import com.thomas.dungeon.Items.Chests;
 /*     */ import com.thomas.dungeon.Level.Deuren;
 /*     */ import com.thomas.dungeon.Level.LevelArrayList;
-/*     */ import com.thomas.dungeon.Level.LevelNiveau;
 /*     */ import com.thomas.dungeon.ScreenStuff.Screenprinting;
 /*     */ import com.thomas.dungeon.armrupgrades.LevelCalculations;
 /*     */ import java.awt.Image;
-/*     */ import java.io.PrintStream;
-/*     */ import java.util.ArrayList;
 /*     */ import java.util.Random;
 /*     */ 
 /*     */ public class Player extends Actor
@@ -63,7 +59,7 @@
 /*  67 */       goUpLevel();
 /*     */     }
 /*  69 */     else if ((Gamehandler.levelLevel != 0) && 
-/*  70 */       (getPlayer().loc.getX() == ((LevelNiveau)LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1)).stairX) && (getPlayer().loc.getY() == ((LevelNiveau)LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1)).stairY))
+/*  70 */       (getPlayer().loc.getX() == LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1).stairX) && (getPlayer().loc.getY() == LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1).stairY))
 /*  71 */       goDownLevel();
 /*     */   }
 /*     */ 

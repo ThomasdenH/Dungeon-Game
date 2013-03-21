@@ -1,15 +1,13 @@
 /*    */ package com.thomas.dungeon.Entities;
 /*    */ 
 /*    */ import com.thomas.dungeon.Inventory.Inventory;
-/*    */ import com.thomas.dungeon.Inventory.SingleItem;
-/*    */ import java.util.ArrayList;
-/*    */ 
-/*    */ public class Character
-/*    */ {
-/*    */   public static int armorLevel;
-/*    */   public static int weaponLevel;
-/*    */ 
-/*    */   public static void resetLevels()
+
+public class Character
+{
+public static int armorLevel;
+public static int weaponLevel;
+
+public static void resetLevels()
 /*    */   {
 /* 11 */     armorLevel = 1;
 /* 12 */     weaponLevel = 1;
@@ -25,13 +23,13 @@
 /*    */ 
 /*    */   public static void buyArmorUpgrade() {
 /* 24 */     if ((armorLevel == 1) && 
-/* 25 */       (((SingleItem)Inventory.inventory.get(3)).amount > 0)) {
+/* 25 */       (Inventory.inventory.get(3).amount > 0)) {
 /* 26 */       Inventory.removeItem(2, 1);
 /* 27 */       addArmorLevel();
 /*    */     }
 /*    */ 
 /* 30 */     if ((armorLevel == 2) && 
-/* 31 */       (((SingleItem)Inventory.inventory.get(3)).amount > 0)) {
+/* 31 */       (Inventory.inventory.get(3).amount > 0)) {
 /* 32 */       Inventory.removeItem(2, 2);
 /* 33 */       addArmorLevel();
 /*    */     }
@@ -40,13 +38,13 @@
 /*    */   public static void buyWeaponUpgrade()
 /*    */   {
 /* 39 */     if ((weaponLevel == 1) && 
-/* 40 */       (((SingleItem)Inventory.inventory.get(3)).amount > 0)) {
+/* 40 */       (Inventory.inventory.get(3).amount > 0)) {
 /* 41 */       Inventory.removeItem(2, 1);
 /* 42 */       addArmorLevel();
 /*    */     }
 /*    */ 
 /* 45 */     if ((weaponLevel == 2) && 
-/* 46 */       (((SingleItem)Inventory.inventory.get(3)).amount > 0)) {
+/* 46 */       (Inventory.inventory.get(3).amount > 0)) {
 /* 47 */       Inventory.removeItem(0, 1);
 /* 48 */       addArmorLevel();
 /*    */     }

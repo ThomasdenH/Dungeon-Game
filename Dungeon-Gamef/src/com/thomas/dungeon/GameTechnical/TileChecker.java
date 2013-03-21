@@ -1,12 +1,6 @@
 /*     */ package com.thomas.dungeon.GameTechnical;
-/*     */ 
-/*     */ import com.thomas.dungeon.Entities.Location;
-/*     */ import com.thomas.dungeon.Entities.Mob;
 /*     */ import com.thomas.dungeon.Entities.Player;
-/*     */ import com.thomas.dungeon.Items.Chest;
-/*     */ import com.thomas.dungeon.Level.Deur;
 /*     */ import com.thomas.dungeon.Level.Deuren;
-/*     */ import java.io.PrintStream;
 /*     */ import java.util.Random;
 /*     */ 
 /*     */ public class TileChecker

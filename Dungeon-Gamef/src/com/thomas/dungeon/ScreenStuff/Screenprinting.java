@@ -1,20 +1,12 @@
 /*     */ package com.thomas.dungeon.ScreenStuff;
-/*     */ 
-/*     */ import com.thomas.dungeon.Entities.Location;
-/*     */ import com.thomas.dungeon.Entities.Mob;
 /*     */ import com.thomas.dungeon.Entities.Mobs;
 /*     */ import com.thomas.dungeon.Entities.Player;
-/*     */ import com.thomas.dungeon.Fog.Fogpart;
 /*     */ import com.thomas.dungeon.GameTechnical.Game;
 /*     */ import com.thomas.dungeon.GameTechnical.Gamehandler;
 /*     */ import com.thomas.dungeon.GameTechnical.TileChecker;
 /*     */ import com.thomas.dungeon.Inventory.Inventory;
-/*     */ import com.thomas.dungeon.Items.Chest;
-/*     */ import com.thomas.dungeon.Items.LayingItem;
-/*     */ import com.thomas.dungeon.Level.Deur;
 /*     */ import com.thomas.dungeon.Level.Deuren;
 /*     */ import com.thomas.dungeon.Level.LevelArrayList;
-/*     */ import com.thomas.dungeon.Level.LevelNiveau;
 /*     */ import com.thomas.dungeon.Level.Rooms;
 /*     */ import com.thomas.dungeon.Level.plaatsVoorDeur;
 /*     */ import java.awt.Color;
@@ -25,10 +17,8 @@
 /*     */ import java.awt.RenderingHints;
 /*     */ import java.awt.Toolkit;
 /*     */ import java.awt.geom.Point2D;
-/*     */ import java.awt.geom.Point2D.Float;
 /*     */ import java.awt.image.BufferedImage;
 /*     */ import java.net.URL;
-/*     */ import java.util.ArrayList;
 /*     */ import java.util.Random;
 /*     */ 
 /*     */ public class Screenprinting
@@ -416,7 +406,7 @@ int ScrollY;
 /* 486 */               this.g.drawImage(Stairs, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn, tileSize, tileSize, null);
 /*     */             }
 /* 488 */             if ((Gamehandler.levelLevel != 0) && 
-/* 489 */               (ScrollX + xTileOpScherm == ((LevelNiveau)LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1)).stairX) && (ScrollY + yTileOpScherm == ((LevelNiveau)LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1)).stairY) && (Gamehandler.levelLevel != 0))
+/* 489 */               (ScrollX + xTileOpScherm == LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1).stairX) && (ScrollY + yTileOpScherm == LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1).stairY) && (Gamehandler.levelLevel != 0))
 /*     */             {
 /* 491 */               this.g.drawImage(StairsDown, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn, tileSize, tileSize, null);
 /*     */             }

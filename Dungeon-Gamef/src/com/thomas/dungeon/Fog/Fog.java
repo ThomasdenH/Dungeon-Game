@@ -1,6 +1,4 @@
 /*     */ package com.thomas.dungeon.Fog;
-/*     */ 
-/*     */ import com.thomas.dungeon.Entities.Location;
 /*     */ import com.thomas.dungeon.Entities.Player;
 /*     */ import com.thomas.dungeon.Level.Deuren;
 /*     */ 

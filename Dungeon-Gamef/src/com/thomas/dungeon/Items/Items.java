@@ -1,6 +1,4 @@
 /*    */ package com.thomas.dungeon.Items;
-/*    */ 
-/*    */ import com.thomas.dungeon.Entities.Location;
 /*    */ import com.thomas.dungeon.Entities.Player;
 /*    */ import com.thomas.dungeon.Inventory.Inventory;
 /*    */ import com.thomas.dungeon.Inventory.SingleItem;

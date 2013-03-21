@@ -2,7 +2,6 @@
 /*    */ 
 /*    */ import java.awt.BorderLayout;
 /*    */ import java.awt.Dimension;
-/*    */ import java.awt.image.BufferedImage;
 /*    */ import javax.swing.JPanel;
 /*    */ 
 /*    */ public class ContentPane extends JPanel
@@ -24,8 +23,3 @@
 /* 29 */     Thread thread = new Thread(new LevelPrint());
 /*    */   }
 /*    */ }
-
-/* Location:           C:\Users\Thomas\Dropbox\Java source\RPG\RPGGame.jar
- * Qualified Name:     com.thomas.dungeon.ScreenStuff.ContentPane
- * JD-Core Version:    0.6.2
- */

@@ -1,16 +1,9 @@
 /*     */ package com.thomas.dungeon.ScreenStuff;
-/*     */ 
-/*     */ import com.thomas.dungeon.Entities.Location;
 /*     */ import com.thomas.dungeon.Entities.Player;
-/*     */ import com.thomas.dungeon.Fog.Fogpart;
 /*     */ import com.thomas.dungeon.GameTechnical.Game;
 /*     */ import com.thomas.dungeon.GameTechnical.Gamehandler;
 /*     */ import com.thomas.dungeon.Inventory.Inventory;
-/*     */ import com.thomas.dungeon.Inventory.SingleItem;
-/*     */ import com.thomas.dungeon.Items.Chest;
-/*     */ import com.thomas.dungeon.armrupgrades.ItemLevel;
 /*     */ import com.thomas.dungeon.armrupgrades.ItemLevels;
-/*     */ import com.thomas.dungeon.carrying.Buyable;
 /*     */ import com.thomas.dungeon.carrying.Crafting;
 /*     */ import java.awt.BasicStroke;
 /*     */ import java.awt.Color;
@@ -18,7 +11,6 @@
 /*     */ import java.awt.Graphics2D;
 /*     */ import java.awt.RenderingHints;
 /*     */ import java.awt.image.BufferedImage;
-/*     */ import java.util.ArrayList;
 /*     */ 
 /*     */ public class InGameMenu
 /*     */ {
@@ -90,9 +82,9 @@
 /*  88 */       this.ginv.setStroke(new BasicStroke(5.0F, 0, 2));
 /*  89 */       this.ginv.drawRect(100, 850, 900, 100);
 /*  90 */       if (ItemLevels.currentArmorLevel + 1 < ItemLevels.maxLevelarmor) {
-/*  91 */         for (int x = 0; x < ((ItemLevel)ItemLevels.armorArray.get(ItemLevels.currentArmorLevel + 1)).items.length; x++) {
+/*  91 */         for (int x = 0; x < ItemLevels.armorArray.get(ItemLevels.currentArmorLevel + 1).items.length; x++) {
 /*  92 */           this.ginv.drawImage(Screenprinting.ArmorButton, 150 + x * 100, 850, 100, 100, null);
-/*  93 */           this.ginv.drawImage(Inventory.getItemImage(((ItemLevel)ItemLevels.armorArray.get(ItemLevels.currentArmorLevel + 1)).items[x]), 150 + x * 100, 850, 100, 100, null);
+/*  93 */           this.ginv.drawImage(Inventory.getItemImage(ItemLevels.armorArray.get(ItemLevels.currentArmorLevel + 1).items[x]), 150 + x * 100, 850, 100, 100, null);
 /*     */         }
 /*     */       } else {
 /*  96 */         this.ginv.setColor(Color.black);
@@ -130,9 +122,9 @@
 /* 129 */       this.ginv.setStroke(new BasicStroke(5.0F, 0, 2));
 /* 130 */       this.ginv.drawRect(100, 850, 900, 100);
 /* 131 */       if (ItemLevels.currentWeaponLevel + 1 < ItemLevels.maxLevel) {
-/* 132 */         for (int x = 0; x < ((ItemLevel)ItemLevels.weaponArray.get(ItemLevels.currentWeaponLevel + 1)).items.length; x++) {
+/* 132 */         for (int x = 0; x < ItemLevels.weaponArray.get(ItemLevels.currentWeaponLevel + 1).items.length; x++) {
 /* 133 */           this.ginv.drawImage(Screenprinting.ArmorButton, 150 + x * 100, 850, 100, 100, null);
-/* 134 */           this.ginv.drawImage(Inventory.getItemImage(((ItemLevel)ItemLevels.weaponArray.get(ItemLevels.currentWeaponLevel + 1)).items[x]), 150 + x * 100, 850, 100, 100, null);
+/* 134 */           this.ginv.drawImage(Inventory.getItemImage(ItemLevels.weaponArray.get(ItemLevels.currentWeaponLevel + 1).items[x]), 150 + x * 100, 850, 100, 100, null);
 /*     */         }
 /*     */       } else {
 /* 137 */         this.ginv.setColor(Color.black);
@@ -170,9 +162,9 @@
 /* 169 */       this.ginv.setStroke(new BasicStroke(5.0F, 0, 2));
 /* 170 */       this.ginv.drawRect(100, 850, 900, 100);
 /* 171 */       if (ItemLevels.currentHealthLevel + 1 < ItemLevels.maxLevelhealth) {
-/* 172 */         for (int x = 0; x < ((ItemLevel)ItemLevels.healthArray.get(ItemLevels.currentHealthLevel + 1)).items.length; x++) {
+/* 172 */         for (int x = 0; x < ItemLevels.healthArray.get(ItemLevels.currentHealthLevel + 1).items.length; x++) {
 /* 173 */           this.ginv.drawImage(Screenprinting.ArmorButton, 150 + x * 100, 850, 100, 100, null);
-/* 174 */           this.ginv.drawImage(Inventory.getItemImage(((ItemLevel)ItemLevels.healthArray.get(ItemLevels.currentHealthLevel + 1)).items[x]), 150 + x * 100, 850, 100, 100, null);
+/* 174 */           this.ginv.drawImage(Inventory.getItemImage(ItemLevels.healthArray.get(ItemLevels.currentHealthLevel + 1).items[x]), 150 + x * 100, 850, 100, 100, null);
 /*     */         }
 /*     */       } else {
 /* 177 */         this.ginv.setColor(Color.black);
@@ -223,36 +215,36 @@
 /* 225 */     this.ginv.drawImage(Crafting.getItemImage(Gamehandler.crafting + 2), 145, 750, null);
 /* 226 */     this.ginv.setFont(gameOverFont);
 /* 227 */     this.ginv.setColor(Color.BLACK);
-/* 228 */     this.ginv.drawString(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name, 553, 183);
-/* 229 */     this.ginv.drawString(((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 1)).name, 553, 483);
-/* 230 */     this.ginv.drawString(((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 2)).name, 553, 783);
+/* 228 */     this.ginv.drawString(Crafting.buyItems.get(Gamehandler.crafting).name, 553, 183);
+/* 229 */     this.ginv.drawString(Crafting.buyItems.get(Gamehandler.crafting + 1).name, 553, 483);
+/* 230 */     this.ginv.drawString(Crafting.buyItems.get(Gamehandler.crafting + 2).name, 553, 783);
 /* 231 */     this.ginv.setColor(Color.WHITE);
-/* 232 */     this.ginv.drawString(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name, 550, 180);
-/* 233 */     this.ginv.drawString(((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 1)).name, 550, 480);
-/* 234 */     this.ginv.drawString(((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 2)).name, 550, 780);
+/* 232 */     this.ginv.drawString(Crafting.buyItems.get(Gamehandler.crafting).name, 550, 180);
+/* 233 */     this.ginv.drawString(Crafting.buyItems.get(Gamehandler.crafting + 1).name, 550, 480);
+/* 234 */     this.ginv.drawString(Crafting.buyItems.get(Gamehandler.crafting + 2).name, 550, 780);
 /*     */ 
-/* 236 */     for (int x = 0; x < ((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).items.length; x++) {
+/* 236 */     for (int x = 0; x < Crafting.buyItems.get(Gamehandler.crafting).items.length; x++) {
 /* 237 */       this.ginv.drawImage(Screenprinting.ArmorButton, 550 + x * 100, 280, 100, 100, null);
-/* 238 */       this.ginv.drawImage(Inventory.itemImage(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).items[x]), 550 + x * 100, 280, 100, 100, null);
+/* 238 */       this.ginv.drawImage(Inventory.itemImage(Crafting.buyItems.get(Gamehandler.crafting).items[x]), 550 + x * 100, 280, 100, 100, null);
 /*     */     }
-/* 240 */     for (int x = 0; x < ((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 1)).items.length; x++) {
+/* 240 */     for (int x = 0; x < Crafting.buyItems.get(Gamehandler.crafting + 1).items.length; x++) {
 /* 241 */       this.ginv.drawImage(Screenprinting.ArmorButton, 550 + x * 100, 580, 100, 100, null);
-/* 242 */       this.ginv.drawImage(Inventory.itemImage(((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 1)).items[x]), 550 + x * 100, 580, 100, 100, null);
+/* 242 */       this.ginv.drawImage(Inventory.itemImage(Crafting.buyItems.get(Gamehandler.crafting + 1).items[x]), 550 + x * 100, 580, 100, 100, null);
 /*     */     }
-/* 244 */     for (int x = 0; x < ((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 2)).items.length; x++) {
+/* 244 */     for (int x = 0; x < Crafting.buyItems.get(Gamehandler.crafting + 2).items.length; x++) {
 /* 245 */       this.ginv.drawImage(Screenprinting.ArmorButton, 550 + x * 100, 880, 100, 100, null);
-/* 246 */       this.ginv.drawImage(Inventory.itemImage(((Buyable)Crafting.buyItems.get(Gamehandler.crafting + 2)).items[x]), 550 + x * 100, 880, 100, 100, null);
+/* 246 */       this.ginv.drawImage(Inventory.itemImage(Crafting.buyItems.get(Gamehandler.crafting + 2).items[x]), 550 + x * 100, 880, 100, 100, null);
 /*     */     }
 /*     */ 
 /* 249 */     this.ginv.setColor(Color.BLACK);
-/* 250 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name), 560, 238);
-/* 251 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name)).append(1).toString()), 560, 538);
-/* 252 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name)).append(2).toString()), 560, 838);
+/* 250 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(Crafting.buyItems.get(Gamehandler.crafting).name), 560, 238);
+/* 251 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(Crafting.buyItems.get(Gamehandler.crafting).name)).append(1).toString()), 560, 538);
+/* 252 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(Crafting.buyItems.get(Gamehandler.crafting).name)).append(2).toString()), 560, 838);
 /*     */ 
 /* 254 */     this.ginv.setColor(Color.WHITE);
-/* 255 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name), 557, 235);
-/* 256 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name)).append(1).toString()), 557, 535);
-/* 257 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(((Buyable)Crafting.buyItems.get(Gamehandler.crafting)).name)).append(2).toString()), 557, 835);
+/* 255 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(Crafting.buyItems.get(Gamehandler.crafting).name), 557, 235);
+/* 256 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(Crafting.buyItems.get(Gamehandler.crafting).name)).append(1).toString()), 557, 535);
+/* 257 */     this.ginv.drawString("Amount: " + Inventory.getStringToAmount(new StringBuilder(String.valueOf(Crafting.buyItems.get(Gamehandler.crafting).name)).append(2).toString()), 557, 835);
 /*     */ 
 /* 259 */     this.ginv.setColor(new Color(200, 200, 100, 150));
 /* 260 */     this.ginv.setStroke(new BasicStroke(20.0F));
@@ -297,38 +289,38 @@
 /* 299 */       this.ginv.drawImage(Screenprinting.ItemScreen, 0, 598, 1990, 166, null);
 /* 300 */       this.ginv.drawImage(Screenprinting.ItemScreen, 0, 764, 1990, 166, null);
 /*     */ 
-/* 302 */       this.ginv.drawImage(Inventory.itemImage(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen)).type), 160, 105, 155, 155, null);
-/* 303 */       this.ginv.drawImage(Inventory.itemImage(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 1)).type), 160, 271, 155, 155, null);
-/* 304 */       this.ginv.drawImage(Inventory.itemImage(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 2)).type), 160, 437, 155, 155, null);
-/* 305 */       this.ginv.drawImage(Inventory.itemImage(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 3)).type), 160, 603, 155, 155, null);
-/* 306 */       this.ginv.drawImage(Inventory.itemImage(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 4)).type), 160, 769, 155, 155, null);
+/* 302 */       this.ginv.drawImage(Inventory.itemImage(Inventory.inventory.get(currentInventoryOnScreen).type), 160, 105, 155, 155, null);
+/* 303 */       this.ginv.drawImage(Inventory.itemImage(Inventory.inventory.get(currentInventoryOnScreen + 1).type), 160, 271, 155, 155, null);
+/* 304 */       this.ginv.drawImage(Inventory.itemImage(Inventory.inventory.get(currentInventoryOnScreen + 2).type), 160, 437, 155, 155, null);
+/* 305 */       this.ginv.drawImage(Inventory.itemImage(Inventory.inventory.get(currentInventoryOnScreen + 3).type), 160, 603, 155, 155, null);
+/* 306 */       this.ginv.drawImage(Inventory.itemImage(Inventory.inventory.get(currentInventoryOnScreen + 4).type), 160, 769, 155, 155, null);
 /* 307 */       this.ginv.setFont(gameOverFont);
 /* 308 */       this.ginv.setColor(Color.BLACK);
-/* 309 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen)).name, 553, 183);
-/* 310 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 1)).name, 553, 349);
-/* 311 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 2)).name, 553, 515);
-/* 312 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 3)).name, 553, 681);
-/* 313 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 4)).name, 553, 847);
+/* 309 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen).name, 553, 183);
+/* 310 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 1).name, 553, 349);
+/* 311 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 2).name, 553, 515);
+/* 312 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 3).name, 553, 681);
+/* 313 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 4).name, 553, 847);
 /* 314 */       this.ginv.setColor(Color.WHITE);
-/* 315 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen)).name, 550, 180);
-/* 316 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 1)).name, 550, 346);
-/* 317 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 2)).name, 550, 512);
-/* 318 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 3)).name, 550, 678);
-/* 319 */       this.ginv.drawString(((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 4)).name, 550, 844);
+/* 315 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen).name, 550, 180);
+/* 316 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 1).name, 550, 346);
+/* 317 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 2).name, 550, 512);
+/* 318 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 3).name, 550, 678);
+/* 319 */       this.ginv.drawString(Inventory.inventory.get(currentInventoryOnScreen + 4).name, 550, 844);
 /*     */ 
 /* 321 */       this.ginv.setFont(smallerGameOverFont);
 /* 322 */       this.ginv.setColor(Color.BLACK);
-/* 323 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen)).amount, 553, 238);
-/* 324 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 1)).amount, 553, 404);
-/* 325 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 2)).amount, 553, 570);
-/* 326 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 3)).amount, 553, 736);
-/* 327 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 4)).amount, 553, 902);
+/* 323 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen).amount, 553, 238);
+/* 324 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 1).amount, 553, 404);
+/* 325 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 2).amount, 553, 570);
+/* 326 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 3).amount, 553, 736);
+/* 327 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 4).amount, 553, 902);
 /* 328 */       this.ginv.setColor(Color.WHITE);
-/* 329 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen)).amount, 550, 235);
-/* 330 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 1)).amount, 550, 401);
-/* 331 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 2)).amount, 550, 567);
-/* 332 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 3)).amount, 550, 733);
-/* 333 */       this.ginv.drawString("Amount: " + ((SingleItem)Inventory.inventory.get(currentInventoryOnScreen + 4)).amount, 550, 899);
+/* 329 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen).amount, 550, 235);
+/* 330 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 1).amount, 550, 401);
+/* 331 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 2).amount, 550, 567);
+/* 332 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 3).amount, 550, 733);
+/* 333 */       this.ginv.drawString("Amount: " + Inventory.inventory.get(currentInventoryOnScreen + 4).amount, 550, 899);
 /*     */ 
 /* 335 */       this.ginv.setColor(new Color(30, 30, 30));
 /* 336 */       this.ginv.fillRect(1990, 100 + 900 / Inventory.inventory.size() * currentInventoryOnScreen, 10, 4150 / Inventory.inventory.size());

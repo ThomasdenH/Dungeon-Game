@@ -1,7 +1,5 @@
 /*    */ package com.thomas.dungeon.GameTechnical;
 /*    */ 
-/*    */ import java.io.PrintStream;
-/*    */ 
 /*    */ public class Converter
 /*    */ {
 /*    */   public static int convertDirectionToInt(String direction)

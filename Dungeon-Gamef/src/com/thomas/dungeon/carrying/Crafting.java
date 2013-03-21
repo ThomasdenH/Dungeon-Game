@@ -19,15 +19,15 @@
 /*    */   }
 /*    */ 
 /*    */   public static void buyItems(int itemType) {
-/* 24 */     for (int x = 0; x < ((Buyable)buyItems.get(itemType)).items.length; x++) {
-/* 25 */       Inventory.removeItem(((Buyable)buyItems.get(itemType)).items[x], 1);
+/* 24 */     for (int x = 0; x < buyItems.get(itemType).items.length; x++) {
+/* 25 */       Inventory.removeItem(buyItems.get(itemType).items[x], 1);
 /*    */     }
 /* 27 */     if (!Inventory.getIfNegative()) {
-/* 28 */       ((Buyable)buyItems.get(itemType)).hasAmountOf += 1;
-/* 29 */       Inventory.addAmountOfItem(((Buyable)buyItems.get(itemType)).name, 1);
+/* 28 */       buyItems.get(itemType).hasAmountOf += 1;
+/* 29 */       Inventory.addAmountOfItem(buyItems.get(itemType).name, 1);
 /*    */     } else {
-/* 31 */       for (int x = 0; x < ((Buyable)buyItems.get(itemType)).items.length; x++)
-/* 32 */         Inventory.addAmountOfItem(((Buyable)buyItems.get(itemType)).items[x], 1);
+/* 31 */       for (int x = 0; x < buyItems.get(itemType).items.length; x++)
+/* 32 */         Inventory.addAmountOfItem(buyItems.get(itemType).items[x], 1);
 /*    */     }
 /*    */   }
 /*    */ 
@@ -36,12 +36,12 @@
 /* 38 */     if (ItemTypeLocation >= buyItems.size()) {
 /* 39 */       return null;
 /*    */     }
-/* 41 */     if (((Buyable)buyItems.get(ItemTypeLocation)).name.equals("Wall")) {
+/* 41 */     if (buyItems.get(ItemTypeLocation).name.equals("Wall")) {
 /* 42 */       return Screenprinting.Muur;
 /*    */     }
-/* 44 */     if (((Buyable)buyItems.get(ItemTypeLocation)).name.equals("Bottle"))
+/* 44 */     if (buyItems.get(ItemTypeLocation).name.equals("Bottle"))
 /* 45 */       return Screenprinting.Bottle;
-/* 46 */     if (((Buyable)buyItems.get(ItemTypeLocation)).name.equals("Bottle with water")) {
+/* 46 */     if (buyItems.get(ItemTypeLocation).name.equals("Bottle with water")) {
 /* 47 */       return Screenprinting.Bottlewithwater;
 /*    */     }
 /* 49 */     return null;

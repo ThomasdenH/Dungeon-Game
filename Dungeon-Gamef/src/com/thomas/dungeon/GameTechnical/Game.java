@@ -1,7 +1,6 @@
 /*     */ package com.thomas.dungeon.GameTechnical;
 /*     */ 
 /*     */ import com.thomas.dungeon.Entities.Actor;
-/*     */ import com.thomas.dungeon.Entities.Location;
 /*     */ import com.thomas.dungeon.Entities.Player;
 /*     */ import com.thomas.dungeon.Inventory.Inventory;
 /*     */ import com.thomas.dungeon.Level.Deuren;
@@ -83,7 +82,8 @@
 /* 115 */     cp.setFocusable(true);
 /* 116 */     cp.addKeyListener(new KeyListener()
 /*     */     {
-/*     */       public void keyPressed(KeyEvent e) {
+/*     */       @Override
+public void keyPressed(KeyEvent e) {
 /* 119 */         if (e.getKeyCode() == 68) {
 /* 120 */           if (Gamehandler.menu) {
 /* 121 */             Menu.buttonToTheRight();
@@ -188,33 +188,40 @@
 /*     */         }
 /*     */       }
 /*     */ 
-/*     */       public void keyReleased(KeyEvent e)
+/*     */       @Override
+public void keyReleased(KeyEvent e)
 /*     */       {
 /*     */       }
 /*     */ 
-/*     */       public void keyTyped(KeyEvent e)
+/*     */       @Override
+public void keyTyped(KeyEvent e)
 /*     */       {
 /*     */       }
 /*     */     });
 /* 234 */     cp.addMouseListener(new MouseListener()
 /*     */     {
-/*     */       public void mouseClicked(MouseEvent arg0)
+/*     */       @Override
+public void mouseClicked(MouseEvent arg0)
 /*     */       {
 /*     */       }
 /*     */ 
-/*     */       public void mouseEntered(MouseEvent arg0)
+/*     */       @Override
+public void mouseEntered(MouseEvent arg0)
 /*     */       {
 /*     */       }
 /*     */ 
-/*     */       public void mouseExited(MouseEvent arg0)
+/*     */       @Override
+public void mouseExited(MouseEvent arg0)
 /*     */       {
 /*     */       }
 /*     */ 
-/*     */       public void mousePressed(MouseEvent arg0)
+/*     */       @Override
+public void mousePressed(MouseEvent arg0)
 /*     */       {
 /*     */       }
 /*     */ 
-/*     */       public void mouseReleased(MouseEvent arg0)
+/*     */       @Override
+public void mouseReleased(MouseEvent arg0)
 /*     */       {
 /*     */       }
 /*     */     });
@@ -247,7 +254,8 @@
 /* 281 */     game.start();
 /*     */   }
 /*     */ 
-/*     */   public void run()
+/*     */   @Override
+public void run()
 /*     */   {
 /* 290 */     while (this.running) {
 /* 291 */       tick();
