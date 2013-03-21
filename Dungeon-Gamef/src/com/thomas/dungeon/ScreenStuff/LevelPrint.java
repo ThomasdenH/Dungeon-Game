@@ -16,16 +16,16 @@ public class LevelPrint extends JPanel implements Runnable {
 	public static int yHEIGHT = Game.HEIGHT;
 
 	public Player pla = new Player();
-	public InformationPictures infPic;
-	public Menu menu;
+	private InformationPictures infPic;
+	private Menu menu;
+	private InGameMenu igm;
 
 	public LevelPrint() {
 		menu = new Menu();
 		infPic = new InformationPictures();
-		setPreferredSize(new Dimension(menu.getMenuImage().getWidth(), menu
-				.getMenuImage().getHeight()));
+		igm = new InGameMenu();
+		setPreferredSize(new Dimension(menu.getMenuImage().getWidth(), menu.getMenuImage().getHeight()));
 		setFocusable(true);
-
 	}
 
 	@Override
@@ -35,38 +35,28 @@ public class LevelPrint extends JPanel implements Runnable {
 		super.paintComponent(g2);
 		super.setSize(dim);
 
-		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setRenderingHint(RenderingHints.KEY_RENDERING,
-				RenderingHints.VALUE_RENDER_QUALITY);
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
 		g.clearRect(0, 0, xWIDTH, yHEIGHT);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, xWIDTH, yHEIGHT);
 
 		if (Gamehandler.menu) {
-			Menu menu = new Menu();
-			g2.drawImage(menu.getMenuImage(), 0, 0, Game.WIDTH, Game.HEIGHT,
-					null);
+			g2.drawImage(menu.getMenuImage(), 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		} else if (Gamehandler.singlePlayerGame) {
-			infPic = new InformationPictures();
 			Screenprinting screp = new Screenprinting();
-			/* 53 */g2.drawImage(infPic.getLeftImage(), 0, 0, null);
-			/* 54 */g2.drawImage(screp.generateIt(), (xWIDTH - screp
-					.generateIt().getWidth()) / 2, yHEIGHT / 2
-					- screp.generateIt().getHeight() / 2, null);
-			/* 55 */} else if (Gamehandler.gameOver) {
-			/* 56 */g2.drawImage(GameOver.getGameOverImage(), 0, 0, Game.WIDTH,
-					Game.HEIGHT, null);
+
+			g2.drawImage(infPic.getLeftImage(), 0, 0, null);
+			g2.drawImage(screp.generateIt(), (xWIDTH - screp.generateIt().getWidth()) / 2, yHEIGHT / 2 - screp.generateIt().getHeight() / 2, null);
+		} else if (Gamehandler.gameOver) {
+			g2.drawImage(GameOver.getGameOverImage(), 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		}
-		/* 58 */if (Gamehandler.inGameMenu) {
-			/* 59 */InGameMenu igm = new InGameMenu();
-			/* 60 */g2.drawImage(igm.getMenuImage(), xWIDTH / 20, yHEIGHT / 20,
-					null);
+		if (Gamehandler.inGameMenu) {
+			g2.drawImage(igm.getMenuImage(), xWIDTH / 20, yHEIGHT / 20, null);
 		}
-		/* 62 */g.dispose();
+		g.dispose();
 	}
 
 	@Override
