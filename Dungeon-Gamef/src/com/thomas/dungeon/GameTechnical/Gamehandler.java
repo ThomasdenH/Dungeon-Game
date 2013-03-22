@@ -1,42 +1,31 @@
 package com.thomas.dungeon.GameTechnical;
 
 import com.thomas.dungeon.Entities.Mobs;
-
 import com.thomas.dungeon.Entities.Player;
-
 import com.thomas.dungeon.Fog.Fog;
-
 import com.thomas.dungeon.Inventory.Inventory;
-
 import com.thomas.dungeon.Items.Chests;
-
 import com.thomas.dungeon.Items.Items;
-
 import com.thomas.dungeon.Level.LevelArrayList;
-
 import com.thomas.dungeon.ScreenStuff.InGameMenu;
-
 import com.thomas.dungeon.ScreenStuff.Screenprinting;
-
 import com.thomas.dungeon.armrupgrades.ItemLevels;
-
 import com.thomas.dungeon.carrying.Crafting;
-
 import com.thomas.dungeon.carrying.CraftingInventory;
 
 public class Gamehandler {
-	/* 19 */public static boolean menu = true;
-	/* 20 */public static boolean singlePlayerGame = false;
-	/* 21 */public static boolean gameOver = false;
+	public static boolean menu = true;
+	public static boolean singlePlayerGame = false;
+	public static boolean gameOver = false;
 	public static int totalTurns;
-	/* 24 */public static int hasTurn = 0;
+	private static int hasTurn = 0;
 
-	/* 26 */public static boolean inGameMenuAble = false;
-	/* 27 */public static boolean inGameMenu = false;
+	public static boolean inGameMenuAble = false;
+	public static boolean inGameMenu = false;
 	public static int levelLevel;
 	public static int inGameMenuType;
 	public static int inventoryType;
-	/* 38 */public static Screenprinting scre = new Screenprinting();
+	public static Screenprinting scre = new Screenprinting();
 	public static int levelType;
 	public static int crafting3;
 	public static int crafting;
@@ -44,66 +33,66 @@ public class Gamehandler {
 	public static int buyableSelected;
 
 	public static void checkIfMobsHaveTurn() {
-		/* 51 */if (hasTurn == 1) {
-			/* 53 */Mobs.allMobsTurn();
+		if (hasTurn == 1) {
+			Mobs.allMobsTurn();
 		}
 	}
 
 	public static void configureSinglePlayerGame() {
-		/* 58 */LevelArrayList.resetLevel();
-		/* 59 */updateLevel();
+		LevelArrayList.resetLevel();
+		updateLevel();
 
-		/* 61 */Player.getPlayer().health = Player.getMaxHealth();
-		/* 62 */Player.getPlayer().XP = 0;
-		/* 63 */Player.getPlayer().Level = 1;
-		/* 64 */Player.getPlayer().direction = "down";
+		Player.getPlayer().health = Player.getMaxHealth();
+		Player.getPlayer().XP = 0;
+		Player.getPlayer().Level = 1;
+		Player.getPlayer().direction = "down";
 
-		/* 66 */Mobs.settings();
-		/* 67 */totalTurns = 1;
-		/* 68 */hasTurn = 0;
+		Mobs.settings();
+		totalTurns = 1;
+		hasTurn = 0;
 
-		/* 70 */Game.pla.loc.setX(39);
-		/* 71 */Game.pla.loc.setY(25);
+		Game.pla.loc.setX(39);
+		Game.pla.loc.setY(25);
 
-		/* 73 */scre.printMap();
+		scre.printMap();
 
-		/* 75 */Game.EntitySet();
+		Game.EntitySet();
 
-		/* 77 */Mobs.mobsOnLevel = 0;
-		/* 78 */Inventory.resetInventory();
-		/* 79 */inGameMenuAble = true;
-		/* 80 */Items.resetItems();
-		/* 81 */Chests.setChests();
-		/* 82 */ItemLevels.resetAllTheLevelsAndStuff();
+		Mobs.mobsOnLevel = 0;
+		Inventory.resetInventory();
+		inGameMenuAble = true;
+		Items.resetItems();
+		Chests.setChests();
+		ItemLevels.resetAllTheLevelsAndStuff();
 
-		/* 84 */Fog.resetFog();
-		/* 85 */Fog.fogChange();
-		/* 86 */Fog.removeFogOnScreen();
+		Fog.resetFog();
+		Fog.fogChange();
+		Fog.removeFogOnScreen();
 
-		/* 88 */setLevelType(0);
-		/* 89 */InGameMenu.inventoryItems = Inventory.inventory.size();
-		/* 90 */Crafting.resetAllTheLevelsAndStuff();
-		/* 91 */CraftingInventory.resetThisStuffToo();
+		setLevelType(0);
+		InGameMenu.inventoryItems = Inventory.inventory.size();
+		Crafting.resetAllTheLevelsAndStuff();
+		CraftingInventory.resetThisStuffToo();
 
-		/* 93 */resetAfterNextLevel();
+		resetAfterNextLevel();
 	}
 
 	public static int getHasTurn() {
-		/* 98 */return hasTurn;
+		return hasTurn;
 	}
 
 	public static int getTotalTurns() {
-		/* 102 */return totalTurns;
+		return totalTurns;
 	}
 
 	public static void goBackToMenu() {
-		/* 106 */if (gameOver) {
-			/* 107 */gameOver = false;
-			/* 108 */singlePlayerGame = false;
-			/* 109 */menu = true;
-			/* 110 */inGameMenuAble = false;
+		if (gameOver) {
+			gameOver = false;
+			singlePlayerGame = false;
+			menu = true;
+			inGameMenuAble = false;
 		}
-		/* 112 */if ((singlePlayerGame) && (!inGameMenu)) {
+		if ((singlePlayerGame) && (!inGameMenu)) {
 			/* 113 */gameOver = false;
 			/* 114 */singlePlayerGame = false;
 			/* 115 */menu = true;
@@ -170,38 +159,38 @@ public class Gamehandler {
 	}
 
 	public static void nextTurn() {
-		/* 192 */if (hasTurn >= totalTurns)
-			/* 193 */hasTurn = 0;
+		if (hasTurn >= totalTurns)
+			hasTurn = 0;
 		else {
-			/* 195 */hasTurn += 1;
+			hasTurn += 1;
 		}
-		/* 197 */Player.getPlayer().checkLevel();
-		/* 15 */Mobs.checkForNeedToSpawnMob();
-		/* 16 */Mobs.despawnDied();
-		/* 17 */Items.checkForNeedToPickupItem();
-		/* 18 */Gamehandler.checkIfMobsHaveTurn();
-		/* 19 */Chests.checkForNeedToAddChests();
+		Player.getPlayer().checkLevel();
+		Mobs.checkForNeedToSpawnMob();
+		Mobs.despawnDied();
+		Items.checkForNeedToPickupItem();
+		Gamehandler.checkIfMobsHaveTurn();
+		Chests.checkForNeedToAddChests();
 		Fog.fogChange();
-		/* 201 */Fog.removeFogOnScreen();
+		Fog.removeFogOnScreen();
 	}
 
 	public static void resetAfterNextLevel() {
-		/* 206 */Mobs.settings();
+		Mobs.settings();
 
-		/* 208 */Game.finalTorches = LevelArrayList.setTorches();
-		/* 209 */Game.finalDark = LevelArrayList.setDark();
-		/* 210 */Game.finalVariations = LevelArrayList.setVariations();
+		Game.finalTorches = LevelArrayList.setTorches();
+		Game.finalDark = LevelArrayList.setDark();
+		Game.finalVariations = LevelArrayList.setVariations();
 
-		/* 212 */Game.EntitySet();
+		Game.EntitySet();
 
-		/* 214 */Mobs.mobsOnLevel = 0;
+		Mobs.mobsOnLevel = 0;
 
-		/* 216 */Fog.resetFog();
-		/* 217 */Fog.fogChange();
-		/* 218 */Fog.removeFogOnScreen();
+		Fog.resetFog();
+		Fog.fogChange();
+		Fog.removeFogOnScreen();
 
-		/* 220 */Chests.setChests();
-		/* 221 */LevelArrayList.resetBlockHealth();
+		Chests.setChests();
+		LevelArrayList.resetBlockHealth();
 	}
 
 	public static void setGameOver() {
@@ -233,14 +222,14 @@ public class Gamehandler {
 	}
 
 	public static void updateLevel() {
-		/* 256 */Game.finalMap = LevelArrayList.getLevel();
-		/* 257 */Game.StairLocationX = LevelArrayList.getStairIntX();
-		/* 258 */Game.StairLocationY = LevelArrayList.getStairIntY();
-		/* 259 */System.out.println(levelLevel);
+		Game.finalMap = LevelArrayList.getLevel();
+		Game.StairLocationX = LevelArrayList.getStairIntX();
+		Game.StairLocationY = LevelArrayList.getStairIntY();
+		System.out.println(levelLevel);
 	}
 
 	public Gamehandler() {
-		/* 264 */menu = true;
+		menu = true;
 	}
 
 }

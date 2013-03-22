@@ -19,11 +19,13 @@ public class LevelPrint extends JPanel implements Runnable {
 	private InformationPictures infPic;
 	private Menu menu;
 	private InGameMenu igm;
+	private Screenprinting screp;
 
 	public LevelPrint() {
 		menu = new Menu();
 		infPic = new InformationPictures();
 		igm = new InGameMenu();
+		screp = new Screenprinting();
 		setPreferredSize(new Dimension(menu.getMenuImage().getWidth(), menu.getMenuImage().getHeight()));
 		setFocusable(true);
 	}
@@ -46,8 +48,6 @@ public class LevelPrint extends JPanel implements Runnable {
 		if (Gamehandler.menu) {
 			g2.drawImage(menu.getMenuImage(), 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		} else if (Gamehandler.singlePlayerGame) {
-			Screenprinting screp = new Screenprinting();
-
 			g2.drawImage(infPic.getLeftImage(), 0, 0, null);
 			g2.drawImage(screp.generateIt(), (xWIDTH - screp.generateIt().getWidth()) / 2, yHEIGHT / 2 - screp.generateIt().getHeight() / 2, null);
 		} else if (Gamehandler.gameOver) {
