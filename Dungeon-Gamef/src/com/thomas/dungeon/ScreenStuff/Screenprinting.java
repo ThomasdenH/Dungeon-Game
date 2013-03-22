@@ -31,38 +31,29 @@ public class Screenprinting {
 	int Y;
 	int Xprint;
 	int Yprint;
-	/* 41 */String[][] map = new String[this.mapsizeX][this.mapsizeY];
-	/* 42 */Random randomGenerator = new Random();
+	String[][] map = new String[this.mapsizeX][this.mapsizeY];
+	Random randomGenerator = new Random();
 
-	/* 44 */String direction = null;
+	String direction = null;
 
-	/* 46 */public int scheurenVerhouding = 20;
+	public int scheurenVerhouding = 20;
 	public static int kamerTeBouwen;
-	/* 50 */public static Random rand = new Random();
-	/* 51 */public int correction = 15;
+	public static Random rand = new Random();
+	public int correction = 15;
 	public boolean done;
-	/* 55 */public static Image Attack = null;
 
-	/* 57 */public static Image Defence = null;
-
-	/* 59 */public static Image Vloer = null;
-
-	/* 61 */public static Image Muur = null;
-
-	/* 63 */public static Image Health = null;
-
-	/* 65 */public static Image MuurOnder = null;
-
-	/* 67 */public static Image Torchrow = null;
-
-	/* 69 */public static Image Torchlow = null;
-
-	/* 71 */public static Image Torchuw = null;
-
-	/* 73 */public static Image Torchaw = null;
-
-	/* 77 */public static Image ScheurVloer = null;
-	/* 78 */public static Image ScheurVloer1 = null;
+	public static Image Attack = null;
+	public static Image Defence = null;
+	public static Image Vloer = null;
+	public static Image Muur = null;
+	public static Image Health = null;
+	public static Image MuurOnder = null;
+	public static Image Torchrow = null;
+	public static Image Torchlow = null;
+	public static Image Torchuw = null;
+	public static Image Torchaw = null;
+	public static Image ScheurVloer = null;
+	public static Image ScheurVloer1 = null;
 	/* 79 */public static Image PutVloer = null;
 	/* 80 */public static Image PatroonVloer = null;
 
@@ -136,9 +127,9 @@ public class Screenprinting {
 	/* 149 */public static Image Hit1 = null;
 	/* 150 */public static Image Hit2 = null;
 
-	/* 331 */public Player pla = Player.getPlayer();
-	/* 332 */public BufferedImage screenImage = new BufferedImage(Game.HEIGHT / 9 * 13, Game.HEIGHT / 9 * 9, 2);
-	/* 333 */public Graphics2D g = (Graphics2D) this.screenImage.getGraphics();
+	public Player pla = Player.getPlayer();
+	public BufferedImage screenImage = new BufferedImage(Game.HEIGHT / 9 * 13, Game.HEIGHT / 9 * 9, 2);
+	public Graphics2D g = (Graphics2D) this.screenImage.getGraphics();
 
 	public static synchronized void loadImages() {
 		/* 156 */URL attack = Screenprinting.class.getResource("Sprites/Attack.png");
@@ -313,8 +304,10 @@ public class Screenprinting {
 		}
 	}
 
+	@Deprecated
 	public BufferedImage generateIt() {
 		/* 345 */this.done = false;
+		g.clearRect(0, 0, screenImage.getWidth(), screenImage.getHeight());
 		/* 346 */this.g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		/* 347 */this.g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -876,6 +869,317 @@ public class Screenprinting {
 				} catch (Exception localException) {
 				}
 		} catch (Exception localException1) {
+		}
+	}
+
+	public void drawScreen(Graphics2D g2) {
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		Player.updateOffSet();
+		Player.updateHitting();
+
+		int offsetX = Player.getOffSetX();
+		int offsetY = Player.getOffSetY();
+
+		int tileSize = Game.HEIGHT / 9;
+		int ScrollX;
+		int ScrollY;
+		if (this.pla.loc.getX() <= 6) {
+			ScrollX = 0;
+		} else {
+			if (this.pla.loc.getX() >= 74)
+				ScrollX = 67;
+			else
+				ScrollX = this.pla.loc.getX() - 6;
+		}
+
+		if (this.pla.loc.getY() <= 4) {
+			ScrollY = 0;
+		} else {
+			if (this.pla.loc.getY() > 45)
+				ScrollY = 41;
+			else
+				ScrollY = this.pla.loc.getY() - 4;
+		}
+		g2.setColor(Color.BLACK);
+		g2.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+		if (Game.finalMap != null) {
+			for (int xTileOpScherm = 13; xTileOpScherm >= -1; xTileOpScherm--) {
+				for (int yTileOpScherm = -1; yTileOpScherm < 10; yTileOpScherm++) {
+					try {
+						if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "-") {
+							if (Game.finalVariations[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("scheur"))
+								g2.drawImage(ScheurVloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+							else if (Game.finalVariations[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("patroon"))
+								g2.drawImage(PatroonVloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+							else if (Game.finalVariations[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("put"))
+								g2.drawImage(PutVloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+							else
+								g2.drawImage(Vloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+						} else if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("D")) {
+							if (Deuren.getSingleDoor(ScrollX + xTileOpScherm - offsetX * tileSize / Player.timeOneTurn, ScrollY + yTileOpScherm).open) {
+								g2.drawImage(Vloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+							} else
+								g2.drawImage(Vloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+						} else if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("B")) {
+							if (Deuren.getSingleDoor(ScrollX + xTileOpScherm, ScrollY + yTileOpScherm).open) {
+								g2.drawImage(Vloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+							} else
+								g2.drawImage(Vloer, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+										/ Player.timeOneTurn, tileSize, tileSize, null);
+
+						} else if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("_")) {
+							g2.drawImage(Void, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize, null);
+						}
+
+						for (int x = 0; x < 20; x++) {
+							for (int y = 0; y < 20; y++) {
+								if (com.thomas.dungeon.Items.Items.Items[((ScrollX + xTileOpScherm) * 20 + x + ((ScrollY + yTileOpScherm) * 20 + y) * 1620)].isItem) {
+									g2.drawImage(
+											Inventory
+													.itemImage(com.thomas.dungeon.Items.Items.Items[((ScrollX + xTileOpScherm) * 20 + x + ((ScrollY + yTileOpScherm) * 20 + y) * 1620)].itemType),
+											xTileOpScherm * tileSize + x * (tileSize - tileSize / 3) / 20 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + y
+													* (tileSize - tileSize / 3) / 20 - offsetY * tileSize / Player.timeOneTurn, tileSize / 3, tileSize / 3, null);
+								}
+							}
+						}
+
+						if ((Game.StairLocationX == ScrollX + xTileOpScherm) && (Game.StairLocationY == ScrollY + yTileOpScherm)) {
+							g2.drawImage(Stairs, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize, null);
+						}
+						if ((Gamehandler.levelLevel != 0) && (ScrollX + xTileOpScherm == LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1).stairX)
+								&& (ScrollY + yTileOpScherm == LevelArrayList.allLevels.get(Gamehandler.levelLevel - 1).stairY) && (Gamehandler.levelLevel != 0)) {
+							g2.drawImage(StairsDown, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize, null);
+						}
+
+						if (Mobs.mob[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].isMob) {
+							g2.drawImage(Mobs.getMobImage(ScrollX + xTileOpScherm, ScrollY + yTileOpScherm), xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn,
+									yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn, tileSize, tileSize, null);
+						}
+						if (com.thomas.dungeon.Items.Chests.chestst[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].isChest) {
+							g2.drawImage(Chest, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize, null);
+						}
+					} catch (Exception localException) {
+						localException.printStackTrace();
+					}
+
+				}
+
+			}
+
+		}
+
+		g2.drawImage(Player.getPlayer().getPlayerImage(), (this.pla.loc.getX() - ScrollX) * tileSize, (this.pla.loc.getY() - ScrollY) * tileSize, tileSize, tileSize, null);
+		if (Player.hitting) {
+			switch (Player.directionHitting) {
+			case 0:
+				g2.drawImage(Player.getHitImage(), (this.pla.loc.getX() - ScrollX) * tileSize, (this.pla.loc.getY() - ScrollY - 1) * tileSize, tileSize, tileSize, null);
+				break;
+			case 1:
+				g2.drawImage(Player.getHitImage(), (this.pla.loc.getX() - ScrollX + 1) * tileSize, (this.pla.loc.getY() - ScrollY) * tileSize, tileSize, tileSize, null);
+				break;
+			case 2:
+				g2.drawImage(Player.getHitImage(), (this.pla.loc.getX() - ScrollX) * tileSize, (this.pla.loc.getY() - ScrollY + 1) * tileSize, tileSize, tileSize, null);
+				break;
+			case 3:
+				g2.drawImage(Player.getHitImage(), (this.pla.loc.getX() - ScrollX - 1) * tileSize, (this.pla.loc.getY() - ScrollY) * tileSize, tileSize, tileSize, null);
+			}
+		}
+
+		if (Player.hittingMob) {
+			g2.drawImage(Player.getHitImageMob(), (this.pla.loc.getX() - ScrollX) * tileSize, (this.pla.loc.getY() - ScrollY) * tileSize, tileSize, tileSize, null);
+		}
+		for (int xTileOpScherm = 13; xTileOpScherm >= -1; xTileOpScherm--) {
+			for (int yTileOpScherm = -1; yTileOpScherm < 11; yTileOpScherm++) {
+				try {
+					if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "X") {
+						g2.drawImage(Muur, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 - offsetY * tileSize
+								/ Player.timeOneTurn, tileSize, tileSize, null);
+						if (!TileChecker.equalsUp(ScrollX + xTileOpScherm, ScrollY + yTileOpScherm + 1)) {
+							g2.drawImage(Muur, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 + tileSize - offsetY
+									* tileSize / Player.timeOneTurn, tileSize, tileSize / 4, null);
+							if (Game.finalVariations[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equalsIgnoreCase("Ivy")) {
+								g2.drawImage(Ivy, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 + tileSize - offsetY
+										* tileSize / Player.timeOneTurn, tileSize, tileSize / 4, null);
+							}
+							GradientPaint redtowhite = new GradientPaint(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize
+									- offsetY * tileSize / Player.timeOneTurn, Color.black, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, tileSize / 4
+									+ yTileOpScherm * tileSize + tileSize - offsetY * tileSize / Player.timeOneTurn, new Color(0, 0, 0, 0));
+							g2.setPaint(redtowhite);
+							g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize / 4);
+						}
+						if (ScrollY + yTileOpScherm >= 80) {
+							g2.drawImage(Muur, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 + tileSize - offsetY
+									* tileSize / Player.timeOneTurn, tileSize, tileSize / 4, null);
+
+							if (Game.finalVariations[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equalsIgnoreCase("Ivy")) {
+								g2.drawImage(Ivy, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 + tileSize - offsetY
+										* tileSize / Player.timeOneTurn, tileSize, tileSize / 4, null);
+							}
+							GradientPaint redtowhite = new GradientPaint(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize
+									- offsetY * tileSize / Player.timeOneTurn, Color.black, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, tileSize / 4
+									+ yTileOpScherm * tileSize + tileSize - offsetY * tileSize / Player.timeOneTurn, new Color(0, 0, 0, 0));
+							g2.setPaint(redtowhite);
+							g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize / 4);
+						}
+					}
+					if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "x") {
+						g2.drawImage(Steen, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 - offsetY * tileSize
+								/ Player.timeOneTurn, tileSize, tileSize, null);
+						if (!TileChecker.equalsUp(ScrollX + xTileOpScherm, ScrollY + yTileOpScherm + 1)) {
+							g2.drawImage(Steen, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 + tileSize - offsetY
+									* tileSize / Player.timeOneTurn, tileSize, tileSize / 4, null);
+
+							GradientPaint redtowhite = new GradientPaint(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize
+									- offsetY * tileSize / Player.timeOneTurn, Color.black, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, tileSize / 4
+									+ yTileOpScherm * tileSize + tileSize - offsetY * tileSize / Player.timeOneTurn, new Color(0, 0, 0, 0));
+							g2.setPaint(redtowhite);
+							g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize / 4);
+						}
+						if (ScrollY + yTileOpScherm >= 80) {
+							g2.drawImage(Steen, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 + tileSize - offsetY
+									* tileSize / Player.timeOneTurn, tileSize, tileSize / 4, null);
+
+							GradientPaint redtowhite = new GradientPaint(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize
+									- offsetY * tileSize / Player.timeOneTurn, Color.black, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, tileSize / 4
+									+ yTileOpScherm * tileSize + tileSize - offsetY * tileSize / Player.timeOneTurn, new Color(0, 0, 0, 0));
+							g2.setPaint(redtowhite);
+							g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize + tileSize - offsetY * tileSize
+									/ Player.timeOneTurn, tileSize, tileSize / 4);
+						}
+					}
+				} catch (Exception localException1) {
+					localException1.printStackTrace();
+				}
+			}
+		}
+
+		for (int xTileOpScherm = -1; xTileOpScherm < 14; xTileOpScherm++) {
+			for (int yTileOpScherm = -1; yTileOpScherm < 10; yTileOpScherm++) {
+				try {
+					if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("B")) {
+						if (Deuren.getDoor()[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].open) {
+							if (Deuren.getDoor()[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].geopendNaar)
+								g2.drawImage(DeurOverYOpenOnder, xTileOpScherm * tileSize - tileSize / 2 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize
+										- tileSize / 2 - offsetY * tileSize / Player.timeOneTurn, tileSize * 2, tileSize * 2, null);
+							else {
+								g2.drawImage(DeurOverYOpenBoven, xTileOpScherm * tileSize - tileSize / 2 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize
+										- tileSize / 2 - offsetY * tileSize / Player.timeOneTurn, tileSize * 2, tileSize * 2, null);
+							}
+						} else {
+							g2.drawImage(DeurOverY, xTileOpScherm * tileSize - tileSize / 2 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 2
+									- offsetY * tileSize / Player.timeOneTurn, tileSize * 2, tileSize * 2, null);
+						}
+					}
+					if (Game.finalMap[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)].equals("D")) {
+						if (Deuren.getDoor()[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].open) {
+							if (Deuren.getDoor()[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].geopendNaar)
+								g2.drawImage(DeurOverXOpenOnder, xTileOpScherm * tileSize - tileSize / 2 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize
+										- tileSize / 2 + tileSize / 4 + tileSize / 14 - offsetY * tileSize / Player.timeOneTurn, tileSize * 2, tileSize * 2 * 1 / 4, null);
+							else {
+								g2.drawImage(DeurOverXOpenBoven, xTileOpScherm * tileSize - tileSize / 2 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize
+										- tileSize / 2 + tileSize / 4 + tileSize / 14 - offsetY * tileSize / Player.timeOneTurn, tileSize * 2, tileSize * 2 * 1 / 4, null);
+							}
+						} else {
+							g2.drawImage(DeurOverX, xTileOpScherm * tileSize - tileSize / 2 - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 2 + 1
+									- offsetY * tileSize / Player.timeOneTurn, tileSize * 2, tileSize * 2, null);
+						}
+					}
+				} catch (Exception localException2) {
+					localException2.printStackTrace();
+				}
+			}
+		}
+		for (int xTileOpScherm = -2; xTileOpScherm < 17; xTileOpScherm++) {
+			for (int yTileOpScherm = -2; yTileOpScherm < 13; yTileOpScherm++) {
+				Color darkColor = new Color(0, 0, 0, 100);
+
+				if ((ScrollX + xTileOpScherm - 1 >= 0)
+						&& (ScrollX + xTileOpScherm - 1 < 80)
+						&& (ScrollY + yTileOpScherm - 1 >= 0)
+						&& (ScrollY + yTileOpScherm - 1 < 50)
+						&& ((Game.finalTorches[(ScrollX + xTileOpScherm - 1)][(ScrollY + yTileOpScherm - 1)] == "abovewall")
+								|| (Game.finalTorches[(ScrollX + xTileOpScherm - 1)][(ScrollY + yTileOpScherm - 1)] == "underwall")
+								|| (Game.finalTorches[(ScrollX + xTileOpScherm - 1)][(ScrollY + yTileOpScherm - 1)] == "leftofwall") || (Game.finalTorches[(ScrollX + xTileOpScherm - 1)][(ScrollY
+								+ yTileOpScherm - 1)] == "rig2htofwall"))) {
+					float middle = (float) ((xTileOpScherm + 0.5D - 1.0D) * tileSize - offsetX * tileSize / Player.timeOneTurn);
+					float middleY = (float) ((yTileOpScherm + 0.5D - 1.0D) * tileSize - offsetY * tileSize / Player.timeOneTurn);
+					Point2D center = new Point2D.Float(middle, middleY);
+					float radius = tileSize * 3.0F;
+					float[] dist = { 0.0F, 0.1F, 0.5F };
+					Color[] colors = { new Color(255, 253, 107, 30), new Color(0, 0, 0, 0), darkColor };
+					RadialGradientPaint p = new RadialGradientPaint(center, radius, dist, colors);
+					g2.setPaint(p);
+
+					g2.fillRect((xTileOpScherm - 2) * tileSize - offsetX * tileSize / Player.timeOneTurn, (yTileOpScherm - 2) * tileSize - offsetY * tileSize / Player.timeOneTurn,
+							tileSize * 3, tileSize * 3);
+				}
+
+				try {
+					if (Game.finalDark[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] != 0) {
+						g2.setColor(darkColor);
+						g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn,
+								tileSize, tileSize);
+					}
+				} catch (Exception localException3) {
+					localException3.printStackTrace();
+				}
+			}
+		}
+		for (int xTileOpScherm = -1; xTileOpScherm < 14; xTileOpScherm++) {
+			for (int yTileOpScherm = -1; yTileOpScherm < 11; yTileOpScherm++) {
+				try {
+					if (Game.finalTorches[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "rig2htofwall") {
+						g2.drawImage(Torchrow, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+								/ Player.timeOneTurn, tileSize, tileSize, null);
+					}
+					if (Game.finalTorches[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "leftofwall") {
+						g2.drawImage(Torchlow, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize
+								/ Player.timeOneTurn, tileSize, tileSize, null);
+					}
+					if (Game.finalTorches[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "underwall") {
+						g2.drawImage(Torchuw, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 - offsetY * tileSize
+								/ Player.timeOneTurn, tileSize, tileSize, null);
+					}
+					if (Game.finalTorches[(ScrollX + xTileOpScherm)][(ScrollY + yTileOpScherm)] == "abovewall") {
+						g2.drawImage(Torchaw, xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - tileSize / 4 - offsetY * tileSize
+								/ Player.timeOneTurn, tileSize, tileSize, null);
+					}
+					if (com.thomas.dungeon.Fog.Fog.fogpppart[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].halffog) {
+						g2.setColor(new Color(0, 0, 0, 100));
+						g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn,
+								tileSize, tileSize);
+					} else if ((com.thomas.dungeon.Fog.Fog.fogpppart[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].fog)
+							&& (com.thomas.dungeon.Fog.Fog.fogpppart[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].wallfog)) {
+						g2.setColor(Color.BLACK);
+						g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn,
+								tileSize, tileSize);
+					} else if (com.thomas.dungeon.Fog.Fog.fogpppart[(ScrollX + xTileOpScherm + (ScrollY + yTileOpScherm) * 80)].wallfog) {
+						g2.setColor(Color.BLACK);
+						g2.fillRect(xTileOpScherm * tileSize - offsetX * tileSize / Player.timeOneTurn, yTileOpScherm * tileSize - offsetY * tileSize / Player.timeOneTurn,
+								tileSize, tileSize);
+					}
+				} catch (Exception localException4) {
+					localException4.printStackTrace();
+				}
+
+			}
 		}
 	}
 }
