@@ -20,6 +20,5 @@
 /*    */   {
 /* 27 */     this.l.requestFocus();
 /* 28 */     this.l.repaint();
-/* 29 */     Thread thread = new Thread(new LevelPrint());
 /*    */   }
 /*    */ }
