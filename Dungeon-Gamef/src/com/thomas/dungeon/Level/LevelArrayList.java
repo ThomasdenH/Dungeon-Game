@@ -7,7 +7,7 @@
 /*     */ 
 /*     */ public class LevelArrayList
 /*     */ {
-/*  12 */   public static ArrayList<LevelNiveau> allLevels = new ArrayList();
+/*  12 */   public static ArrayList<LevelNiveau> allLevels = new ArrayList<LevelNiveau>();
 /*     */ 
 /*  14 */   static Random rand = new Random();
 /*     */ 
@@ -164,7 +164,7 @@
 /*     */ 
 /*     */   public static void reset()
 /*     */   {
-/* 173 */     allLevels = new ArrayList();
+/* 173 */     allLevels = new ArrayList<LevelNiveau>();
 /*     */   }
 /*     */ 
 /*     */   public static void resetBlockHealth() {
@@ -200,7 +200,7 @@
 /*     */   }
 /*     */ 
 /*     */   public static void resetLevel() {
-/* 209 */     allLevels = new ArrayList();
+/* 209 */     allLevels = new ArrayList<LevelNiveau>();
 /* 210 */     Gamehandler.levelLevel = 0;
 /*     */   }
 /*     */ 

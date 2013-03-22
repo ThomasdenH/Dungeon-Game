@@ -38,7 +38,7 @@
 /*     */ 
 /*     */   public static ArrayList<SingleItemInChest> generateItems()
 /*     */   {
-/*  50 */     ArrayList items = new ArrayList();
+/*  50 */     ArrayList<SingleItemInChest> items = new ArrayList<SingleItemInChest>();
 /*     */ 
 /*  52 */     int maxItemsInChest = 1 + Player.getPlayer().Level / 20 + rand.nextInt(3);
 /*  53 */     for (int x = 0; x < maxItemsInChest; x++)

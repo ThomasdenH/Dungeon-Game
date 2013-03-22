@@ -6,7 +6,7 @@
 /*   */ {
 /*   */   public boolean isChest;
 /*   */   public int direction;
-/* 9 */   public ArrayList<SingleItemInChest> chestItems = new ArrayList();
+/* 9 */   public ArrayList<SingleItemInChest> chestItems = new ArrayList<SingleItemInChest>();
 /*   */ }
 
 /* Location:           C:\Users\Thomas\Dropbox\Java source\RPG\RPGGame.jar

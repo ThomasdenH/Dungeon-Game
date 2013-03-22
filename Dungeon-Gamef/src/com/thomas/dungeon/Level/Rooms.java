@@ -20,7 +20,7 @@
 /*     */   static int pilY;
 /*     */   int murenOmheen;
 /*     */   public static boolean shouldBuildPilar;
-/* 788 */   ArrayList<Room> kamers = new ArrayList();
+/* 788 */   ArrayList<Room> kamers = new ArrayList<Room>();
 /*     */ 
 /*     */   public String[][] beginningCourse(int locationX, int locationY, String[][] map)
 /*     */   {
